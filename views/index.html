@@ -22,20 +22,31 @@
   </head>
   <body>
     <div id="wrapper">
-      <header>
-        <h1>
-          Micro services
-        </h1>
-      </header>
-
       <main>
         <form action="/api/shorurl/new" method="POST">
+          <h1>
+          Micro services
+            
+          </h1>
           <label for="url">URL to be shortened</label>
           <input type="text" name="url" value="https://www.google.com.vn">
           <button type="submit">
             POST URL
           </button>
         </form>
+        
+        <section id="file">
+          <h1>
+            File Metadata Microservice
+          </h1>
+          <form enctype="multipart/form-data" method="POST" action="/api/fileanalyse">
+            <input type="file" name="upfile">
+            <button type="submit">
+              Upload
+            </button>
+          </form>
+          
+        </section>
       </main>
     </div>
   </body>

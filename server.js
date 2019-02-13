@@ -5,11 +5,18 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const dns = require('dns');
+var cors = require('cors');
+const multer = require('multer');
+
 const app = express();
 
 // we've started you off with Express, 
 // but feel free to use whatever libs or frameworks you'd like through `package.json`.
-app.use(bodyParser.urlencoded({extended: false}));
+var storage = multer.memoryStorage();
+var upload = multer({ storage: storage });
+
+app.use(cors());
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
@@ -87,6 +94,15 @@ app.get('/api/shorurl/new/:short', (req, res) => {
         res.redirect("https://"+d.original_url);
       }
     });
+})
+
+
+app.post('/api/fileanalyse', upload.single('upfile'), (req, res) => {
+  res.json({
+    "name": req.file.originalname,
+    "type": req.file.mimetype,
+    "size": req.file.size
+  });
 })
 
 // listen for requests :)
