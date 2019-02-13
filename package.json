@@ -10,7 +10,10 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "body-parser": "1.18.3",
+    "multer": "^1.x",
+    "cors": "^2.x"
   },
   "engines": {
     "node": "8.x"
