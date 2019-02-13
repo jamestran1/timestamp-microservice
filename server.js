@@ -41,7 +41,15 @@ app.get('/api/timestamp/:date_string?', (req, res) => {
       "unix": date.getTime(),
       "utc": date.toUTCString()
     })
-})
+});
+
+app.get('/api/whoami', (req, res) => {
+  res.json({
+    "ipaddress": req.header('x-forwarded-for').split(',')[0],
+    "language": req.header('Accept-Language'),
+    "software": req.header('User-Agent')
+  });
+});
 
 // listen for requests :)
 const listener = app.listen(process.env.PORT, function() {
